@@ -146,6 +146,26 @@ The `benchmark/` folder defines a lightweight evaluation plan for comparing:
 
 Suggested evaluation dimensions include code executability, financial correctness, output-format compliance, bias control, and number of repair turns.
 
+## Initial Evaluation
+
+An initial prompt-level validation pass tested 8 realistic Chinese financial engineering requests. The comparison focused on prompt quality rather than downstream model output quality.
+
+Average prompt-level scores improved most in:
+
+- executability
+- output compliance
+- bias and risk control
+- repair cost
+
+Summary result:
+
+```text
+Direct Chinese prompts:      stronger at natural intent, weaker at execution detail
+Localized English prompts:   stronger at task structure, validation, and coding-agent readiness
+```
+
+See `benchmark/evaluation_notes.md` for the full case notes and scores.
+
 ## For Financial Engineering Applicants
 
 This project is intended as a small but concrete portfolio project for financial engineering applicants. It combines multilingual prompt engineering, LLM workflow design, and quantitative finance use cases.
@@ -157,3 +177,7 @@ Built an open-source Codex Skill that localizes Chinese financial engineering in
 ```
 
 See `docs/application-narrative.md` for a polished application-facing description.
+
+## GitHub Release Prep
+
+See `docs/github-release-prep.md` for the suggested repository description, topics, release notes, and push commands.
