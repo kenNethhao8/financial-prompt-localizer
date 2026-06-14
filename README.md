@@ -101,8 +101,10 @@ financial-prompt-localizer/
   agents/openai.yaml
   examples/before_after_examples.md
   examples/finance_prompt_cases.jsonl
+  templates/
   benchmark/README.md
   benchmark/evaluation_notes.md
+  benchmark/model_outputs/
   benchmark/scoring_rubric.md
   benchmark/scoring_template.csv
   docs/application-narrative.md
@@ -148,6 +150,20 @@ The project includes a Chinese-to-English finance terminology glossary:
 - `docs/finance-term-glossary.md`
 
 It covers A-share market terms, backtesting and bias terms, factor research, data engineering, financial NLP, derivatives, fixed income, credit risk, and common informal Chinese cues such as "你看着来" or "不要太复杂".
+
+## Template Library
+
+The `templates/` folder provides reusable prompt frames for:
+
+- backtesting
+- factor research
+- portfolio optimization
+- financial machine learning
+- financial data engineering
+- financial NLP
+- derivatives, fixed income, and credit risk
+
+Use these templates when a Chinese request clearly matches a standard workflow. The skill still preserves the user's own constraints first.
 
 ## Boundaries
 
@@ -203,6 +219,24 @@ original_chinese,17.80,2.80,3.35,1.65,2.75,2.80
 ```
 
 See `benchmark/downstream_results.md` for details and limitations.
+
+## Real Model Output Samples
+
+The `benchmark/model_outputs/` folder contains a 10-case sample of compact raw model outputs comparing:
+
+- original Chinese prompts
+- literal English prompts
+- localized English prompts
+
+Average total score in this sample:
+
+```text
+original_chinese: 20.7
+literal_english: 15.6
+localized_english: 29.9
+```
+
+See `benchmark/model_outputs/model_output_results.md` for notes and limitations.
 
 ## For Financial Engineering Applicants
 

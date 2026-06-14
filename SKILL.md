@@ -38,7 +38,16 @@ Do not perform literal translation only. Localize the prompt by making implicit 
    - output files, tables, or report sections
    - reproducibility and validation expectations
 
-4. Produce the final English prompt in this shape:
+4. If the request matches a common workflow, use the relevant prompt template when available:
+   - `templates/backtest.md`
+   - `templates/factor_research.md`
+   - `templates/portfolio_optimization.md`
+   - `templates/financial_ml.md`
+   - `templates/data_engineering.md`
+   - `templates/financial_nlp.md`
+   - `templates/derivatives_fixed_income_credit.md`
+
+5. Produce the final English prompt in this shape:
 
 ```text
 Task:
@@ -60,7 +69,7 @@ Validation:
 - ...
 ```
 
-5. If the original Chinese request is ambiguous, include a short "Clarifying questions" section before the final prompt. Ask only questions that materially affect execution.
+6. If the original Chinese request is ambiguous, include a short "Clarifying questions" section before the final prompt. Ask only questions that materially affect execution.
 
 ## Localization Rules
 
@@ -76,6 +85,12 @@ Validation:
 - Do not overpromise trading performance. Frame outputs as research, diagnostics, or backtest evidence.
 
 ## Finance-Specific Guidance
+
+For template use:
+
+- Use a template when the user asks for a standard workflow such as a backtest, factor study, optimization, ML research plan, data pipeline, NLP extraction, option-pricing project, fixed-income analysis, or credit-risk simulation.
+- Do not force a template when the user asks a narrow conceptual question.
+- Preserve the user's original constraints even when a template suggests additional defaults.
 
 For Chinese finance terminology:
 
