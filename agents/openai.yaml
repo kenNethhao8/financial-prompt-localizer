@@ -1,0 +1,7 @@
+interface:
+  display_name: "Financial Prompt Localizer"
+  short_description: "Localize Chinese finance prompts."
+  default_prompt: "Use $financial-prompt-localizer to turn my Chinese financial engineering task into a structured English prompt for Codex."
+
+policy:
+  allow_implicit_invocation: true
