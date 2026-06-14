@@ -2,6 +2,8 @@
 
 This taxonomy defines the financial contexts covered by `financial-prompt-localizer` and the localization cues that should be added when Chinese requests are vague or informal.
 
+For term-level mappings such as 未来函数 -> look-ahead bias and 涨停 -> limit-up, see `finance-term-glossary.md`.
+
 ## 1. A-Share Quantitative Research
 
 Typical Chinese cues:

@@ -58,6 +58,8 @@ Validation:
 
 For the full financial-context taxonomy, see `financial-context-taxonomy.md`.
 
+For Chinese-to-English finance terminology mappings, see `finance-term-glossary.md`.
+
 ## What Not To Do
 
 - Do not turn every request into a long prompt.

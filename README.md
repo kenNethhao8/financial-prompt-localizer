@@ -107,6 +107,7 @@ financial-prompt-localizer/
   benchmark/scoring_template.csv
   docs/application-narrative.md
   docs/financial-context-taxonomy.md
+  docs/finance-term-glossary.md
   docs/github-release-prep.md
   docs/prompt-localization-method.md
   LICENSE
@@ -139,6 +140,14 @@ Use $financial-prompt-localizer to convert this Chinese request into an optimize
 - Preserve financial-market details such as A-share tickers, trading constraints, and data assumptions.
 - Prefer reproducible research outputs such as CSV, JSON, and concise summaries.
 - Avoid invented APIs, unavailable data, and exaggerated trading claims.
+
+## Terminology Support
+
+The project includes a Chinese-to-English finance terminology glossary:
+
+- `docs/finance-term-glossary.md`
+
+It covers A-share market terms, backtesting and bias terms, factor research, data engineering, financial NLP, derivatives, fixed income, credit risk, and common informal Chinese cues such as "你看着来" or "不要太复杂".
 
 ## Boundaries
 

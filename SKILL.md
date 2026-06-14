@@ -27,6 +27,7 @@ Do not perform literal translation only. Localize the prompt by making implicit 
    - Keep A-share tickers as 6-digit codes.
    - Keep Chinese market terms when no exact English equivalent is safe, then add an English explanation in parentheses.
    - Preserve user constraints such as "pandas and numpy only", "single file", "silent by default", "save CSV", or "suitable for applications".
+   - For market-specific terminology, use `docs/finance-term-glossary.md` when available.
 
 3. Add missing execution details when safe:
    - target market, asset universe, or benchmark
@@ -75,6 +76,11 @@ Validation:
 - Do not overpromise trading performance. Frame outputs as research, diagnostics, or backtest evidence.
 
 ## Finance-Specific Guidance
+
+For Chinese finance terminology:
+
+- Prefer the mappings in `docs/finance-term-glossary.md` for terms such as 未来函数, 复权, 停牌, 涨跌停, 北向资金, 龙虎榜, 调仓, 换手率, 久期, 凸性, and 评级迁移矩阵.
+- If a term is market-specific, keep the Chinese concept in mind and add precise English execution guidance rather than translating it loosely.
 
 For A-share and Chinese financial-market tasks:
 
