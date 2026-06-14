@@ -176,6 +176,25 @@ Localized English prompts:   stronger at task structure, validation, and coding-
 
 See `benchmark/evaluation_notes.md` for the full case notes and scores.
 
+## Benchmark Pilot
+
+The benchmark folder also includes a 20-case pilot set with three prompt variants per case:
+
+- original Chinese
+- literal English
+- localized English
+
+Current pilot average scores:
+
+```text
+variant,total_score,executability,financial_correctness,output_compliance,bias_risk_control,repair_cost
+literal_english,17.70,2.80,3.30,1.65,2.75,2.80
+localized_english,29.30,4.90,5.00,4.75,4.75,4.90
+original_chinese,17.80,2.80,3.35,1.65,2.75,2.80
+```
+
+See `benchmark/downstream_results.md` for details and limitations.
+
 ## For Financial Engineering Applicants
 
 This project is intended as a small but concrete portfolio project for financial engineering applicants. It combines multilingual prompt engineering, LLM workflow design, and quantitative finance use cases.

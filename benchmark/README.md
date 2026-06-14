@@ -48,9 +48,13 @@ Score each LLM output from 1 to 5. See `scoring_rubric.md` for the full scoring 
 ## Files
 
 - `README.md`: benchmark procedure
+- `downstream_prompt_variants.jsonl`: 20-case prompt variant set
+- `downstream_scores.csv`: pilot scores for original Chinese, literal English, and localized English variants
+- `downstream_results.md`: summary and interpretation of the pilot benchmark
 - `evaluation_notes.md`: initial prompt-level validation notes
 - `scoring_rubric.md`: 1-5 scoring guide
 - `scoring_template.csv`: starter evaluation sheet
+- `../scripts/score_summary.py`: score summary script
 
 ## Expected Hypothesis
 
