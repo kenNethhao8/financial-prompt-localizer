@@ -47,16 +47,16 @@ Validation:
 
 ## Finance Task Taxonomy
 
-- Data collection
-- Data cleaning
-- Factor construction
-- Factor evaluation
-- Backtesting
-- Portfolio optimization
-- Risk modeling
-- Event study
-- Machine learning prediction
-- Research writing
+- A-share quantitative research
+- Backtesting and trading systems
+- Portfolio and risk management
+- Financial machine learning
+- Financial data engineering
+- Financial NLP
+- Academic and application projects
+- Derivatives, fixed income, and credit risk
+
+For the full financial-context taxonomy, see `financial-context-taxonomy.md`.
 
 ## What Not To Do
 

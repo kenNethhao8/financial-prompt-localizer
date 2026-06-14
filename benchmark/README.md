@@ -12,7 +12,16 @@ For each task, compare three variants:
 
 ## Task Set
 
-Use `examples/finance_prompt_cases.jsonl` as the first task set. It contains 20 Chinese financial engineering prompts covering A-share research, factor modeling, backtesting, risk, portfolio construction, and data workflows.
+Use `examples/finance_prompt_cases.jsonl` as the first task set. It contains 80 Chinese financial engineering prompts covering:
+
+- A-share quantitative research
+- backtesting and trading systems
+- portfolio and risk management
+- financial machine learning
+- financial data engineering
+- financial NLP
+- academic and application projects
+- derivatives, fixed income, and credit risk
 
 Use `examples/before_after_examples.md` for qualitative inspection of how localization differs from literal translation.
 
@@ -29,7 +38,7 @@ Score each LLM output from 1 to 5. See `scoring_rubric.md` for the full scoring 
 
 ## Suggested Procedure
 
-1. Select 20 prompts from the example file.
+1. Select a balanced sample from the 80-prompt example file, or evaluate the full set.
 2. Generate literal English translations.
 3. Generate localized English prompts with this skill.
 4. Send each prompt variant to the same model under the same settings.
@@ -39,6 +48,7 @@ Score each LLM output from 1 to 5. See `scoring_rubric.md` for the full scoring 
 ## Files
 
 - `README.md`: benchmark procedure
+- `evaluation_notes.md`: initial prompt-level validation notes
 - `scoring_rubric.md`: 1-5 scoring guide
 - `scoring_template.csv`: starter evaluation sheet
 
