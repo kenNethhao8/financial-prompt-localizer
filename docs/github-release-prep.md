@@ -50,7 +50,7 @@ Includes:
 - 20-case downstream benchmark pilot
 - 10-case model output samples
 - evaluation template
-- application-facing project narrative
+- research workflow documentation
 ```
 
 ## 中文发布简介
@@ -58,7 +58,7 @@ Includes:
 ```text
 financial-prompt-localizer 是一个面向中文母语者的 Codex Skill，用于把中文金融工程、量化研究、回测、因子、风控、金融机器学习等需求，转成更适合 GPT/Codex/Claude 执行的结构化英文 prompt。
 
-项目包含 80 条金融场景样例、中文金融术语表、prompt 模板库、benchmark pilot、真实模型输出样本和申请项目叙事材料。
+项目包含 80 条金融场景样例、中文金融术语表、prompt 模板库、benchmark pilot、真实模型输出样本和研究工作流说明材料。
 ```
 
 ## Suggested Push Commands

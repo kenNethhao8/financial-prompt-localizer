@@ -20,7 +20,7 @@ Use `examples/finance_prompt_cases.jsonl` as the first task set. It contains 80 
 - financial machine learning
 - financial data engineering
 - financial NLP
-- academic and application projects
+- academic and research writing
 - derivatives, fixed income, and credit risk
 
 Use `examples/before_after_examples.md` for qualitative inspection of how localization differs from literal translation.

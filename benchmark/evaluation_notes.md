@@ -12,7 +12,7 @@ Initial prompt-level evaluation suggests that localized English prompts are more
 - **financial research discipline**: look-ahead bias, transaction costs, date alignment, and missing data checks
 - **coding-agent readiness**: concrete deliverables, validation steps, and machine-readable outputs
 
-The strongest improvements appeared in backtesting, factor evaluation, transaction-cost analysis, and application-facing research-report tasks.
+The strongest improvements appeared in backtesting, factor evaluation, transaction-cost analysis, and research-report presentation tasks.
 
 ## Test Cases
 
@@ -217,12 +217,12 @@ Prompt-level score:
 | Direct Chinese | 4 | 2 | 3 | 1 | 2 | 2 |
 | Localized English | 5 | 4 | 5 | 4 | 4 | 4 |
 
-### Case 8: Application-Facing Research Report
+### Case 8: Research Report Presentation
 
 Raw Chinese prompt:
 
 ```text
-帮我把一个量化策略结果整理成研究报告结构，适合申请项目展示。
+帮我把一个量化策略结果整理成研究报告结构，适合项目展示。
 ```
 
 Direct Chinese prompt risk:
@@ -234,7 +234,7 @@ Direct Chinese prompt risk:
 Localized prompt additions:
 
 - asks for motivation, data, methodology, assumptions, backtest design, metrics, robustness checks, limitations, and future work
-- adds resume bullet and short project description
+- adds short project summary and project description
 - separates observed results from interpretation
 - avoids investment-advice framing
 
@@ -256,6 +256,6 @@ Average across 8 cases:
 
 ## Interpretation
 
-The skill improves prompt quality most by turning underspecified Chinese instructions into execution-ready English prompts. The improvement is especially visible when the original request contains flexible phrases such as "时间你看着来", "不要太复杂", "有没有用", or "适合申请项目展示".
+The skill improves prompt quality most by turning underspecified Chinese instructions into execution-ready English prompts. The improvement is especially visible when the original request contains flexible phrases such as "时间你看着来", "不要太复杂", "有没有用", or "适合项目展示".
 
 This is not yet a downstream model-performance benchmark. The next evaluation step is to run each prompt variant through the same LLM and score the generated code or analysis outputs with `scoring_rubric.md`.

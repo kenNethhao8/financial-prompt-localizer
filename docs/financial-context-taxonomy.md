@@ -114,19 +114,19 @@ Localization additions:
 - distinction between evidence and inference
 - copyright-aware quoting limits
 
-## 7. Academic and Application Projects
+## 7. Academic and Research Writing
 
 Typical Chinese cues:
 
-- "适合申请"
-- "写进简历"
+- "适合展示"
+- "项目说明"
 - "研究报告结构"
 - "复现论文"
 
 Localization additions:
 
 - motivation, data, methodology, assumptions, results, limitations, future work
-- resume bullet and project description formats
+- project description and research-summary formats
 - claims calibrated to evidence
 - separation of backtest results and interpretation
 - academic tone without exaggerated performance claims
@@ -158,6 +158,6 @@ Localization additions:
 | "不要太复杂" | keep the implementation concise and avoid unnecessary abstractions |
 | "大众指标" | use standard metrics appropriate to the workflow |
 | "有没有用" | define measurable evaluation criteria |
-| "适合申请" | add portfolio-ready narrative, limitations, and resume-friendly outputs |
+| "适合展示" | add clear project narrative, limitations, and reader-friendly outputs |
 | "帮我检查" | ask for failure modes, validation checks, and concrete fixes |
 | "能不能预测" | frame as empirical research and avoid causal or performance guarantees |

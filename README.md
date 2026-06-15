@@ -103,7 +103,7 @@ Choose the time and recommend common indicators.
 | 金融机器学习 | 收益率预测、横截面排序、时间序列预测、数据泄漏、walk-forward validation |
 | 金融数据工程 | 行情清洗、财报对齐、复权价格、股票池、Parquet 存储、宏观数据发布日期 |
 | 金融 NLP | 财经新闻情绪、券商研报抽取、公告事件研究、年报 MD&A、业绩会文本 |
-| 学术与申请项目 | 文献综述、论文复现、研究报告、简历 bullet、申请文书项目描述 |
+| 学术与研究写作 | 文献综述、论文复现、研究报告、项目说明、方法论总结 |
 | 衍生品 / 固收 / 信用风险 | Black-Scholes、Greeks、蒙特卡洛、久期、凸性、收益率曲线、CDS、评级迁移 |
 
 ## 项目结构
@@ -135,7 +135,6 @@ financial-prompt-localizer/
     finance-term-glossary.md
     financial-context-taxonomy.md
     prompt-localization-method.md
-    application-narrative.md
     github-release-prep.md
 ```
 
@@ -263,9 +262,9 @@ localized_english: 29.9
 
 所有生成的 prompt 都应该由用户复核，尤其是涉及数据来源、股票代码、交易假设和投资解释时。
 
-## 对金融工程申请有什么价值？
+## 应用价值
 
-这个项目适合作为金融工程、金融科技、量化研究方向申请材料中的项目经历，因为它结合了：
+这个项目的价值在于提升中文用户使用 LLM / coding agent 做金融工程任务时的表达质量和执行稳定性。它适合用于：
 
 - 多语言 LLM workflow 设计
 - 中文金融语境理解
@@ -273,18 +272,20 @@ localized_english: 29.9
 - coding-agent 使用方法
 - 量化研究任务分类
 - benchmark 和 rubric 设计
+- 金融研究任务说明标准化
+- 团队内部 prompt 规范沉淀
 
-英文项目描述：
+英文简介：
 
 ```text
-Built an open-source Codex Skill that localizes Chinese financial engineering instructions into structured English prompts optimized for LLM coding agents, with benchmark cases, prompt templates, terminology mappings, and evaluation criteria for quantitative research workflows.
+An open-source Codex Skill that localizes Chinese financial engineering instructions into structured English prompts optimized for LLM coding agents, with benchmark cases, prompt templates, terminology mappings, and evaluation criteria for quantitative research workflows.
 ```
 
 ## English Summary
 
 `financial-prompt-localizer` is a Codex Skill for Chinese-native financial engineering users. It converts Chinese quantitative finance requests into structured English prompts with explicit task goals, data assumptions, output formats, validation checks, and finance-specific risk controls.
 
-It is designed for A-share research, backtesting, factor modeling, portfolio optimization, financial machine learning, data engineering, financial NLP, derivatives, fixed income, credit risk, and academic application projects.
+It is designed for A-share research, backtesting, factor modeling, portfolio optimization, financial machine learning, data engineering, financial NLP, derivatives, fixed income, credit risk, and research writing workflows.
 
 ## License
 

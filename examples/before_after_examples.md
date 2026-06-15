@@ -175,35 +175,35 @@ Why localization helps:
 - Adds standard cost scenarios and output tables.
 - Forces turnover definition clarity.
 
-## 5. Application-Facing Research Report
+## 5. Research Report Presentation
 
 Chinese request:
 
 ```text
-帮我把一个量化策略结果整理成研究报告结构，适合申请项目展示。
+帮我把一个量化策略结果整理成研究报告结构，适合项目展示。
 ```
 
 Literal English translation:
 
 ```text
-Help me organize the results of a quantitative strategy into a research report structure suitable for application project display.
+Help me organize the results of a quantitative strategy into a research report structure suitable for project presentation.
 ```
 
 Localized English prompt:
 
 ```text
 Task:
-Create a polished research-report structure for a quantitative strategy project suitable for a graduate financial engineering application portfolio.
+Create a polished research-report structure for a quantitative strategy project suitable for public project presentation.
 
 Requirements:
 - Present the project as research, not as investment advice.
 - Include motivation, data, methodology, assumptions, backtest design, metrics, robustness checks, limitations, and future work.
 - Explain how the strategy handles look-ahead bias, transaction costs, and overfitting risk.
-- Keep the tone clear, analytical, and application-ready.
+- Keep the tone clear, analytical, and reader-friendly.
 
 Output format:
 - Provide a report outline with section titles and bullet points.
-- Add a short resume bullet and a 150-word project description.
+- Add a short project summary and a 150-word project description.
 
 Validation:
 - Make sure claims are supported by evidence.
@@ -213,6 +213,6 @@ Validation:
 
 Why localization helps:
 
-- Converts "适合申请" into specific portfolio deliverables.
+- Converts "适合展示" into specific reader-facing deliverables.
 - Adds academic framing and risk controls.
 - Prevents overclaiming strategy performance.

@@ -53,7 +53,7 @@ Validation:
 - Financial machine learning
 - Financial data engineering
 - Financial NLP
-- Academic and application projects
+- Academic and research writing
 - Derivatives, fixed income, and credit risk
 
 For the full financial-context taxonomy, see `financial-context-taxonomy.md`.

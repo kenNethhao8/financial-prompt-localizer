@@ -116,6 +116,6 @@ Use it when a Chinese request contains market-specific language, informal shorth
 | 不要太复杂 | Keep the implementation concise and avoid unnecessary abstractions. |
 | 推荐大众指标 | Use standard metrics appropriate to the task. |
 | 有没有用 | Define measurable evaluation criteria and evidence. |
-| 适合申请 | Produce portfolio-ready narrative, limitations, and resume-friendly wording. |
+| 适合展示 | Produce clear project narrative, limitations, and reader-friendly wording. |
 | 帮我检查 | Identify failure modes, validation checks, and concrete fixes. |
 | 能不能预测 | Frame as empirical research; avoid causal or performance guarantees. |

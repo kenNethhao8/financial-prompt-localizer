@@ -1,6 +1,6 @@
 ---
 name: financial-prompt-localizer
-description: Convert Chinese financial engineering, quantitative research, data analysis, and coding-agent requests into structured English prompts. Use when a Chinese-native user asks to translate, localize, optimize, rewrite, or prepare a prompt for Codex, ChatGPT, Claude, or another LLM, especially for A-share research, factor modeling, backtesting, portfolio construction, risk analysis, financial machine learning, data engineering, financial NLP, academic application projects, derivatives, fixed income, or credit-risk work.
+description: Convert Chinese financial engineering, quantitative research, data analysis, and coding-agent requests into structured English prompts. Use when a Chinese-native user asks to translate, localize, optimize, rewrite, or prepare a prompt for Codex, ChatGPT, Claude, or another LLM, especially for A-share research, factor modeling, backtesting, portfolio construction, risk analysis, financial machine learning, data engineering, financial NLP, research writing, derivatives, fixed income, or credit-risk work.
 ---
 
 # Financial Prompt Localizer
@@ -20,13 +20,13 @@ Do not perform literal translation only. Localize the prompt by making implicit 
    - financial machine learning: return prediction, cross-sectional ranking, time-series forecasting, leakage prevention, walk-forward validation, model interpretation, model-decay monitoring
    - financial data engineering: market data cleaning, point-in-time fundamentals, corporate actions, universe construction, Parquet storage, data-quality reports, macro release alignment
    - financial NLP: news sentiment, brokerage research extraction, announcement analysis, MD&A analysis, earnings-call transcripts, event clustering
-   - academic and application projects: literature reviews, paper replication, research reports, resume bullets, project descriptions, interview pitches
+   - academic and research writing: literature reviews, paper replication, research reports, project descriptions, methodology summaries
    - derivatives, fixed income, and credit risk: option pricing, Greeks, Monte Carlo, binomial trees, duration, convexity, yield curves, CDS spreads, rating migration, credit scorecards
 
 2. Preserve domain intent:
    - Keep A-share tickers as 6-digit codes.
    - Keep Chinese market terms when no exact English equivalent is safe, then add an English explanation in parentheses.
-   - Preserve user constraints such as "pandas and numpy only", "single file", "silent by default", "save CSV", or "suitable for applications".
+   - Preserve user constraints such as "pandas and numpy only", "single file", "silent by default", "save CSV", or "suitable for a report".
    - For market-specific terminology, use `docs/finance-term-glossary.md` when available.
 
 3. Add missing execution details when safe:
@@ -79,7 +79,7 @@ Validation:
 - Convert "帮我做一个" into a concrete deliverable, for example "build a Python script", "design a research workflow", or "write a reproducible notebook outline".
 - Convert "时间你看着来" into a reasonable default date range plus a note that the user can override it.
 - Convert "指标推荐大众指标" into standard metrics such as total return, annualized return, annualized volatility, Sharpe ratio, maximum drawdown, win rate, turnover, IC, rank IC, tracking error, VaR, or CVaR depending on the task.
-- Convert "适合申请" into portfolio-ready outputs such as a project narrative, resume bullet, research-report outline, and limitations section.
+- Convert "适合展示" into reader-friendly outputs such as a project narrative, research-report outline, and limitations section.
 - Keep the prompt actionable for an agent that will execute work, inspect files, write code, or produce artifacts.
 - Do not invent unavailable data sources, credentials, paid APIs, or guaranteed results.
 - Do not overpromise trading performance. Frame outputs as research, diagnostics, or backtest evidence.
