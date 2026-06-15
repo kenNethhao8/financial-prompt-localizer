@@ -11,6 +11,12 @@ financial-prompt-localizer
 Short description:
 
 ```text
+中文金融工程 Prompt 本地化 Codex Skill：把中文量化/回测/风控需求转成适合 LLM coding agents 执行的结构化英文 prompt。
+```
+
+English description:
+
+```text
 A Codex Skill that localizes Chinese financial engineering requests into structured English prompts for LLM coding agents.
 ```
 
@@ -36,11 +42,23 @@ Initial release of financial-prompt-localizer.
 
 Includes:
 - Codex Skill metadata and workflow instructions
-- 20 Chinese financial engineering prompt cases
+- 80 Chinese financial engineering prompt cases
 - 5 before/after localization examples
+- Chinese finance terminology glossary
+- prompt template library
 - prompt-quality scoring rubric
+- 20-case downstream benchmark pilot
+- 10-case model output samples
 - evaluation template
 - application-facing project narrative
+```
+
+## 中文发布简介
+
+```text
+financial-prompt-localizer 是一个面向中文母语者的 Codex Skill，用于把中文金融工程、量化研究、回测、因子、风控、金融机器学习等需求，转成更适合 GPT/Codex/Claude 执行的结构化英文 prompt。
+
+项目包含 80 条金融场景样例、中文金融术语表、prompt 模板库、benchmark pilot、真实模型输出样本和申请项目叙事材料。
 ```
 
 ## Suggested Push Commands

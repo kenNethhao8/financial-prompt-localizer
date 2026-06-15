@@ -1,12 +1,34 @@
 # Financial Prompt Localizer
 
-`financial-prompt-localizer` is a Codex Skill that converts Chinese financial engineering and quantitative research requests into structured English prompts for LLMs and coding agents.
+面向中文母语者的金融工程 Prompt 本地化 Codex Skill。
 
-The goal is not literal translation. The skill localizes Chinese-native task descriptions into English prompts that make goals, assumptions, data requirements, outputs, and validation steps explicit.
+它可以把中文金融工程、量化研究、回测、因子、风控、金融机器学习等自然语言需求，转成更适合 Codex / GPT / Claude 等英文优先模型执行的结构化英文 prompt。
 
-## Quick Start
+> This project localizes Chinese financial engineering requests into structured English prompts for LLM coding agents.
 
-Use the skill with a Chinese finance or quant request:
+## 这个项目解决什么问题？
+
+很多中文用户能很自然地说出金融研究需求，例如：
+
+```text
+我没有经验，但是要对长电科技进行回测，时间你看着来，指标也是，推荐大众指标。
+```
+
+如果只是直译成英文，模型可能只知道“做回测”，但不知道：
+
+- 股票代码要确认
+- 时间范围要设默认值
+- 指标应该用哪些
+- 是否需要保存 CSV / JSON
+- 是否要检查未来函数
+- 是否要处理停牌、涨跌停、交易成本
+- 如何让新手也能读懂结果
+
+`financial-prompt-localizer` 做的不是普通翻译，而是 **prompt localization**：把中文语境里的模糊表达，转成适合模型执行的英文任务说明。
+
+## 快速使用
+
+在 Codex 里调用：
 
 ```text
 Use $financial-prompt-localizer to convert this Chinese financial engineering request into an optimized English prompt:
@@ -14,7 +36,7 @@ Use $financial-prompt-localizer to convert this Chinese financial engineering re
 我没有经验，但是要对长电科技进行回测，时间你看着来，指标也是，推荐大众指标。
 ```
 
-Expected output shape:
+输出会变成类似：
 
 ```text
 Task:
@@ -24,211 +46,196 @@ Context:
 The user has little backtesting experience and wants a simple, understandable analysis.
 
 Requirements:
+- Confirm the ticker before running: 600584.SH.
+- Use daily adjusted close price data.
 - Use a reasonable default date range.
-- Use daily adjusted close prices.
-- Include common metrics such as total return, annualized return, volatility, Sharpe ratio, maximum drawdown, and win rate.
+- Start with a buy-and-hold baseline.
+- Optionally compare it with a simple moving-average strategy.
+- Avoid overfitting and do not present the result as investment advice.
+
+Output format:
+- Save daily backtest results as CSV.
+- Save summary metrics as CSV or JSON.
+- Print no more than 20 summary lines.
 
 Validation:
-- Confirm the ticker before running.
-- Sort dates correctly.
-- Shift signals before calculating returns if a strategy signal is used.
+- Check that dates are sorted correctly.
+- Check for missing or non-numeric price values.
+- Shift strategy signals before calculating returns to avoid look-ahead bias.
 ```
 
-## Why This Exists
+## 为什么不是“中译英”？
 
-Many Chinese-native users can describe finance and coding tasks naturally in Chinese, but GPT-style coding agents often perform better when the prompt is structured in English with explicit constraints. This project focuses on that gap for financial engineering workflows across quantitative research, risk, data engineering, financial NLP, and academic portfolio projects.
+普通翻译保留字面意思。Prompt 本地化保留任务意图，并补齐模型执行需要的上下文。
 
-## Use Cases
+例如中文里常说：
 
-The example library now contains 80 Chinese financial prompt-localization cases across eight broad contexts:
+```text
+时间你看着来，指标推荐大众指标。
+```
 
-| Context | Example requests |
-| --- | --- |
-| A-share quantitative research | momentum, reversal, value, quality, size, industry neutralization, ST filters, northbound flows, Dragon-Tiger List |
-| Backtesting and trading systems | single-stock backtests, equal-weight portfolios, slippage, transaction costs, suspension handling, limit-up or limit-down execution |
-| Portfolio and risk management | mean-variance, risk parity, Black-Litterman, tracking error, VaR, CVaR, stress testing, risk budgeting |
-| Financial machine learning | return prediction, cross-sectional ranking, time-series forecasting, leakage prevention, walk-forward validation, model interpretation |
-| Financial data engineering | data cleaning, point-in-time fundamentals, corporate actions, universe construction, Parquet storage, macro release alignment |
-| Financial NLP | news sentiment, brokerage report extraction, MD&A risk analysis, earnings-call sentiment, news event clustering |
-| Academic and application projects | literature review, paper replication, research reports, resume bullets, project descriptions, interview pitches |
-| Derivatives, fixed income, and credit risk | Black-Scholes, Greeks, Monte Carlo, binomial trees, duration, convexity, yield curves, CDS spreads, rating migration |
+直译只是：
 
-## Why Not Just Translate?
+```text
+Choose the time and recommend common indicators.
+```
 
-A literal translation keeps words. Prompt localization keeps intent and turns vague requests into executable instructions.
-
-For example, "时间你看着来，指标推荐大众指标" should not only become "choose the time and common indicators". For a coding agent, it should become:
+但对 coding agent 更有用的表达是：
 
 - choose a reasonable default date range
-- use daily adjusted prices
-- calculate standard performance metrics
+- use daily adjusted close prices
+- calculate total return, annualized return, volatility, Sharpe ratio, max drawdown, and win rate
 - save machine-readable outputs
 - check missing values and date order
-- avoid look-ahead bias when signals are involved
+- avoid look-ahead bias when strategy signals are involved
 
-That difference is the core value of this skill.
+这就是本项目的核心价值。
 
-## What It Does
+## 适合哪些场景？
 
-Given a Chinese request such as:
+当前案例库包含 80 条中文金融 prompt-localization 样例，覆盖八类场景：
 
-```text
-帮我写一个A股动量因子回测脚本，要求不要太复杂，只用pandas和numpy，结果保存csv。
-```
+| 场景 | 示例 |
+| --- | --- |
+| A 股量化研究 | 动量、反转、价值、质量、小市值、行业中性、北向资金、龙虎榜 |
+| 回测与交易系统 | 单股回测、组合调仓、交易成本、滑点、停牌、涨跌停成交限制 |
+| 投资组合与风险管理 | 均值方差、风险平价、Black-Litterman、跟踪误差、VaR、CVaR、压力测试 |
+| 金融机器学习 | 收益率预测、横截面排序、时间序列预测、数据泄漏、walk-forward validation |
+| 金融数据工程 | 行情清洗、财报对齐、复权价格、股票池、Parquet 存储、宏观数据发布日期 |
+| 金融 NLP | 财经新闻情绪、券商研报抽取、公告事件研究、年报 MD&A、业绩会文本 |
+| 学术与申请项目 | 文献综述、论文复现、研究报告、简历 bullet、申请文书项目描述 |
+| 衍生品 / 固收 / 信用风险 | Black-Scholes、Greeks、蒙特卡洛、久期、凸性、收益率曲线、CDS、评级迁移 |
 
-The skill produces a structured English prompt:
-
-```text
-Task:
-Build a concise Python script for an A-share momentum factor backtest.
-
-Requirements:
-- Use pandas and numpy only.
-- Keep the script in a single file and avoid unnecessary abstractions.
-- Compute a configurable momentum signal from past returns.
-- Save portfolio returns, factor values, and summary metrics as CSV files.
-
-Validation:
-- Check for missing required columns.
-- Confirm that signals are lagged before calculating forward returns.
-```
-
-## Repository Structure
+## 项目结构
 
 ```text
 financial-prompt-localizer/
   SKILL.md
   agents/openai.yaml
-  examples/before_after_examples.md
-  examples/finance_prompt_cases.jsonl
+  examples/
+    before_after_examples.md
+    finance_prompt_cases.jsonl
   templates/
-  benchmark/README.md
-  benchmark/evaluation_notes.md
-  benchmark/model_outputs/
-  benchmark/scoring_rubric.md
-  benchmark/scoring_template.csv
-  docs/application-narrative.md
-  docs/financial-context-taxonomy.md
-  docs/finance-term-glossary.md
-  docs/github-release-prep.md
-  docs/prompt-localization-method.md
-  LICENSE
+    backtest.md
+    factor_research.md
+    portfolio_optimization.md
+    financial_ml.md
+    data_engineering.md
+    financial_nlp.md
+    derivatives_fixed_income_credit.md
+  benchmark/
+    README.md
+    downstream_prompt_variants.jsonl
+    downstream_scores.csv
+    downstream_results.md
+    model_outputs/
+    scoring_rubric.md
+    scoring_template.csv
+  docs/
+    finance-term-glossary.md
+    financial-context-taxonomy.md
+    prompt-localization-method.md
+    application-narrative.md
+    github-release-prep.md
 ```
 
-## Install
+## 安装方式
 
-Clone this repository into your Codex skills directory, or copy the folder into:
+把本仓库复制到 Codex skills 目录：
 
 ```text
 ~/.codex/skills/financial-prompt-localizer
 ```
 
-On Windows, this may look like:
+Windows 上通常类似：
 
 ```text
 D:\Codex\.codex\skills\financial-prompt-localizer
 ```
 
-Then invoke it explicitly:
+然后在 Codex 中显式调用：
 
 ```text
-Use $financial-prompt-localizer to convert this Chinese request into an optimized English prompt: ...
+Use $financial-prompt-localizer to convert this Chinese request into an optimized English prompt:
+...
 ```
 
-## Design Principles
+## 输出模式
 
-- Translate intent, not just words.
-- Add task structure only when it improves execution.
-- Preserve financial-market details such as A-share tickers, trading constraints, and data assumptions.
-- Prefer reproducible research outputs such as CSV, JSON, and concise summaries.
-- Avoid invented APIs, unavailable data, and exaggerated trading claims.
+你可以要求不同输出形式：
 
-## Terminology Support
+```text
+Use $financial-prompt-localizer in bilingual mode:
 
-The project includes a Chinese-to-English finance terminology glossary:
+中文需求：
+我想用机器学习预测下个月股票收益，给我一个不要过拟合的研究流程。
+```
+
+或者：
+
+```text
+Use $financial-prompt-localizer in comparison mode:
+
+我的策略换手率太高，帮我分析交易成本对收益的影响。
+```
+
+推荐模式：
+
+- `standard mode`：只输出优化后的英文 prompt
+- `bilingual mode`：中文意图总结 + 英文 prompt + 本地化说明
+- `comparison mode`：普通英文直译 + 优化英文 prompt + 差异解释
+
+## 术语支持
+
+项目包含中文金融术语映射表：
 
 - `docs/finance-term-glossary.md`
 
-It covers A-share market terms, backtesting and bias terms, factor research, data engineering, financial NLP, derivatives, fixed income, credit risk, and common informal Chinese cues such as "你看着来" or "不要太复杂".
+示例：
 
-## Template Library
+| 中文 | 推荐英文 | 说明 |
+| --- | --- | --- |
+| 未来函数 | look-ahead bias | 不建议直译成 future function |
+| 复权价格 | adjusted price | 需要说明前复权或后复权 |
+| 停牌 | trading suspension | 回测中要说明能否交易 |
+| 涨停 / 跌停 | limit-up / limit-down | A 股成交约束很关键 |
+| 北向资金 | northbound capital flow | 要注意数据发布时间 |
+| 龙虎榜 | Dragon-Tiger List | 通常作为事件研究数据 |
+| 调仓 | rebalancing | 需要说明频率和执行日 |
+| 换手率 | turnover | 要说明单边或双边 |
 
-The `templates/` folder provides reusable prompt frames for:
+## Prompt 模板库
 
-- backtesting
-- factor research
-- portfolio optimization
-- financial machine learning
-- financial data engineering
-- financial NLP
-- derivatives, fixed income, and credit risk
+`templates/` 文件夹提供常见金融工程任务的 prompt 框架：
 
-Use these templates when a Chinese request clearly matches a standard workflow. The skill still preserves the user's own constraints first.
+- 回测：`templates/backtest.md`
+- 因子研究：`templates/factor_research.md`
+- 组合优化：`templates/portfolio_optimization.md`
+- 金融机器学习：`templates/financial_ml.md`
+- 数据工程：`templates/data_engineering.md`
+- 金融 NLP：`templates/financial_nlp.md`
+- 衍生品 / 固收 / 信用风险：`templates/derivatives_fixed_income_credit.md`
 
-## Boundaries
+当中文请求明显属于某类标准工作流时，skill 会优先参考对应模板，但仍然保留用户原始约束。
 
-This project does not provide investment advice, trading signals, or guaranteed strategy performance. It does not fetch data, run backtests, or call APIs by itself. It only prepares better English prompts for LLMs and coding agents.
+## Benchmark 与验证
 
-The generated prompts should still be reviewed by the user, especially when data sources, tickers, time ranges, or trading assumptions matter.
+项目包含三层验证材料：
 
-## Benchmark
+1. **80 条金融语境样例**
+   - `examples/finance_prompt_cases.jsonl`
 
-The `benchmark/` folder defines a lightweight evaluation plan for comparing:
+2. **20-case downstream benchmark pilot**
+   - `benchmark/downstream_prompt_variants.jsonl`
+   - `benchmark/downstream_scores.csv`
+   - `benchmark/downstream_results.md`
 
-1. original Chinese prompts
-2. literal English translations
-3. localized English prompts generated by this skill
+3. **10-case 真实模型输出样本**
+   - `benchmark/model_outputs/raw_outputs.md`
+   - `benchmark/model_outputs/model_output_scores.csv`
+   - `benchmark/model_outputs/model_output_results.md`
 
-The current example set contains 80 prompt-localization cases. Suggested evaluation dimensions include code executability, financial correctness, output-format compliance, bias control, and number of repair turns.
-
-## Initial Evaluation
-
-An initial prompt-level validation pass tested 8 realistic Chinese financial engineering requests. The comparison focused on prompt quality rather than downstream model output quality.
-
-Average prompt-level scores improved most in:
-
-- executability
-- output compliance
-- bias and risk control
-- repair cost
-
-Summary result:
-
-```text
-Direct Chinese prompts:      stronger at natural intent, weaker at execution detail
-Localized English prompts:   stronger at task structure, validation, and coding-agent readiness
-```
-
-See `benchmark/evaluation_notes.md` for the full case notes and scores.
-
-## Benchmark Pilot
-
-The benchmark folder also includes a 20-case pilot set with three prompt variants per case:
-
-- original Chinese
-- literal English
-- localized English
-
-Current pilot average scores:
-
-```text
-variant,total_score,executability,financial_correctness,output_compliance,bias_risk_control,repair_cost
-literal_english,17.70,2.80,3.30,1.65,2.75,2.80
-localized_english,29.30,4.90,5.00,4.75,4.75,4.90
-original_chinese,17.80,2.80,3.35,1.65,2.75,2.80
-```
-
-See `benchmark/downstream_results.md` for details and limitations.
-
-## Real Model Output Samples
-
-The `benchmark/model_outputs/` folder contains a 10-case sample of compact raw model outputs comparing:
-
-- original Chinese prompts
-- literal English prompts
-- localized English prompts
-
-Average total score in this sample:
+当前 10-case 模型输出样本的平均总分：
 
 ```text
 original_chinese: 20.7
@@ -236,20 +243,49 @@ literal_english: 15.6
 localized_english: 29.9
 ```
 
-See `benchmark/model_outputs/model_output_results.md` for notes and limitations.
+这说明优化后的英文 prompt 在任务结构、输入假设、输出格式、风险控制和 coding-agent 可执行性方面更稳定。
 
-## For Financial Engineering Applicants
+## 项目边界
 
-This project is intended as a small but concrete portfolio project for financial engineering applicants. It combines multilingual prompt engineering, LLM workflow design, and quantitative finance use cases.
+这个项目不是：
 
-Application-facing positioning:
+- 投资建议工具
+- 自动交易系统
+- 数据获取工具
+- 回测框架
+- 收益预测服务
+
+它只做一件事：
 
 ```text
-Built an open-source Codex Skill that localizes Chinese financial engineering instructions into structured English prompts optimized for LLM coding agents, with benchmark cases and evaluation criteria for quantitative research workflows.
+把中文金融工程需求转成更适合 LLM / coding agent 执行的英文 prompt。
 ```
 
-See `docs/application-narrative.md` for a polished application-facing description.
+所有生成的 prompt 都应该由用户复核，尤其是涉及数据来源、股票代码、交易假设和投资解释时。
 
-## GitHub Release Prep
+## 对金融工程申请有什么价值？
 
-See `docs/github-release-prep.md` for the suggested repository description, topics, release notes, and push commands.
+这个项目适合作为金融工程、金融科技、量化研究方向申请材料中的项目经历，因为它结合了：
+
+- 多语言 LLM workflow 设计
+- 中文金融语境理解
+- prompt engineering
+- coding-agent 使用方法
+- 量化研究任务分类
+- benchmark 和 rubric 设计
+
+英文项目描述：
+
+```text
+Built an open-source Codex Skill that localizes Chinese financial engineering instructions into structured English prompts optimized for LLM coding agents, with benchmark cases, prompt templates, terminology mappings, and evaluation criteria for quantitative research workflows.
+```
+
+## English Summary
+
+`financial-prompt-localizer` is a Codex Skill for Chinese-native financial engineering users. It converts Chinese quantitative finance requests into structured English prompts with explicit task goals, data assumptions, output formats, validation checks, and finance-specific risk controls.
+
+It is designed for A-share research, backtesting, factor modeling, portfolio optimization, financial machine learning, data engineering, financial NLP, derivatives, fixed income, credit risk, and academic application projects.
+
+## License
+
+MIT License
